@@ -6,8 +6,9 @@ import Loading from './components/Loading'
 import Drawer from '@mui/material/Drawer';
 import { useDispatch, useSelector } from 'react-redux'
 import Button from '@mui/material/Button';
-import { calculateBasket, setDrawer } from './redux/slices/basketSlice'
+import { calculateBasket, deleteFromBasket, setDrawer } from './redux/slices/basketSlice'
 import { useEffect } from 'react'
+import Snackbar from '@mui/material/Snackbar';
 
 
 function App() {
@@ -19,6 +20,13 @@ function App() {
   }, [])
 
   const dispatch = useDispatch();
+
+  const handleRemoveFromBasket = (product) => {
+    dispatch(deleteFromBasket(product));
+    dispatch(calculateBasket());
+  }
+
+
 
   return (
     <div>
@@ -33,7 +41,7 @@ function App() {
                     <img className='w-[50px] h-[50px] mr-3' src={product.image} alt="product-basket-img" />
                     <p className='w-[320px] mr-3'>{product.title}({product.count})</p>
                     <p className='font-bold mr-3 w-[60px]'>{product.price}₺</p>
-                    <Button size='small' style={{ backgroundColor: '#eb5e2f' }} variant="contained">Sil</Button>
+                    <Button onClick={() => handleRemoveFromBasket(product)} size='small' style={{ backgroundColor: '#eb5e2f' }} variant="contained">Sil</Button>
                   </div>
                 </div>
               )

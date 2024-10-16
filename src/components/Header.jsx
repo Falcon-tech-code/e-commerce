@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import Badge from '@mui/material/Badge';
 import { useDispatch, useSelector } from 'react-redux';
 import { setDrawer } from '../redux/slices/basketSlice';
+import { IoSearchOutline } from "react-icons/io5";
 
 
 function Header() {
@@ -34,14 +35,15 @@ function Header() {
     return (
         <div className='flex flex-row items-center justify-between'>
             <div>
-                <img onClick={() => navigate("/")} className='w-40 h-8' src="./src/images/logo.png" alt="company-logo" />
+                <img onClick={() => navigate("/")} className='w-40 h-8' src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Hepsiburada_logo_official.svg/1024px-Hepsiburada_logo_official.svg.png" alt="company-logo" />
                 <div className='flex flex-row gap-2'>
                     <p className='text-orange-500 font-bold'>Premium'u</p>
                     <p className='font-bold'>Keşfet</p>
                 </div>
             </div>
-            <div>
-                <input className='border-0 border-b-2 border-b-orange-500 px-3 py-1 outline-none placeholder-black' type="text" placeholder='Ürün arayınız..' />
+            <div className='flex flex-row items-center justify-end text-center border-0 border-b-2 border-b-orange-500'>
+                <input className='mr-5 px-3 py-1 outline-none placeholder-black' type="text" placeholder='Ürün arayınız..' />
+                <IoSearchOutline />
             </div>
             <div className='flex flex-row gap-3'>
                 {theme ? <FaRegMoon className='text-xl text-orange-500 cursor-pointer' onClick={changeTheme} /> : <CiLight className='text-xl text-orange-500 cursor-pointer' onClick={changeTheme} />}
