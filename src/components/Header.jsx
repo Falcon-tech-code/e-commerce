@@ -20,6 +20,14 @@ function Header() {
 
     const [search, setSearch] = useState('');
 
+    const clearInput = (id) => {
+        navigate("/product-details/" + id);
+    }
+
+    const fillInput = (e) => {
+        setSearch(e)
+    }
+
     useEffect(() => {
         const loadPosts = async () => {
             setLoading(true);
@@ -59,8 +67,8 @@ function Header() {
 
     return (
         <div className='flex flex-row items-center justify-between'>
-            <div>
-                <img onClick={() => navigate("/")} className='w-40 h-8' src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Hepsiburada_logo_official.svg/1024px-Hepsiburada_logo_official.svg.png" alt="company-logo" />
+            <div onClick={() => navigate("/")} className='hover:cursor-pointer'>
+                <img className='w-40 h-8' src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Hepsiburada_logo_official.svg/1024px-Hepsiburada_logo_official.svg.png" alt="company-logo" />
                 <div className='flex flex-row gap-2'>
                     <p className='text-orange-500 font-bold'>Premium'u</p>
                     <p className='font-bold'>Keşfet</p>
@@ -68,20 +76,22 @@ function Header() {
             </div>
             <div>
                 <div className='flex flex-row items-center justify-end text-center border-0 border-b-2 border-b-orange-500'>
-                    <input id='search-Input' className='mr-5 px-3 py-1 outline-none placeholder-black' type="text" onChange={(e) => setSearch(e.target.value)} placeholder='Ürün arayınız..' />
+                    <input id='search-Input' className='mr-5 px-3 py-1 outline-none placeholder-black' type="text" onChange={(e) => fillInput(e.target.value)} placeholder='Ürün arayınız..' />
                     <IoSearchOutline />
                 </div>
                 <div>
-                    {loading ? (<h4>Yükleniyor...</h4>) : (
-                        (posts
-                            .filter((value) => {
-                                if (search === "") {
-                                } else if (value.title.toLowerCase().includes(search.toLowerCase())) {
-                                    return value
-                                }
-                            })
-                            .map(item => <div key={item.id} className='w-[550px] font-bold text-xl mt-5 flex flex-row items-center justify-between text-center gap-3 border border-gray-400 p-3 rounded-md' onClick={() => navigate("/product-details/" + item.id)}><img className='w-[50px] h-[60px]' src={item.image}></img>{item.title}<p className='text-2xl'>{item.price}₺</p></div>))
-                    )}
+                    <div id='search-div'>
+                        {loading ? (<h4>Yükleniyor...</h4>) : (
+                            (posts
+                                .filter((value) => {
+                                    if (search === "") {
+                                    } else if (value.title.toLowerCase().includes(search.toLowerCase())) {
+                                        return value
+                                    }
+                                })
+                                .map(item => <div key={item.id} className='w-[550px] font-bold text-xl mt-5 flex flex-row items-center justify-between text-center gap-3 border border-gray-400 p-3 rounded-md hover:cursor-pointer' onClick={() => clearInput(item.id)}><img className='w-[50px] h-[60px]' src={item.image}></img>{item.title}<p className='text-2xl'>{item.price}₺</p></div>))
+                        )}
+                    </div>
                 </div>
             </div>
             <div className='flex flex-row gap-3'>

@@ -10,9 +10,10 @@ import '../css/ProductDetails.css';
 
 function ProductDetails() {
 
+    const { id } = useParams();
+
     const dispatch = useDispatch();
 
-    const { id } = useParams();
     const { products, selectedProduct } = useSelector((store) => store.product)
     const { price, image, title, description } = selectedProduct;
 
