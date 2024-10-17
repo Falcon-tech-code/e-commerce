@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom'
-import { setSelectedProduct } from '../redux/slices/productSlice';
+import { getAllProducts, setSelectedProduct } from '../redux/slices/productSlice';
 import { Rating } from 'primereact/rating';
 import { CiCirclePlus } from "react-icons/ci";
 import { CiCircleMinus } from "react-icons/ci";
@@ -49,6 +49,7 @@ function ProductDetails() {
 
 
     useEffect(() => {
+        dispatch(getAllProducts());
         getProductById();
     }, [])
 
@@ -66,7 +67,7 @@ function ProductDetails() {
                 <img className='w-[600px] h-[400px]' src={image} alt="selected-product-img" />
             </div>
             <div>
-                <Rating className='mt-14' value={rating} onChange={(e) => setValue(e.rating)} readOnly cancel={false} />
+                <Rating className='mt-14' value={selectedProduct.rating.rate} onChange={(e) => setValue(e.selectedProduct.rating.rate)} readOnly cancel={false} />
                 <h2 className='font-bold font-sans text-4xl mt-3'>{title}</h2>
                 <h3 className='font-thin font-sans text-lg mt-3'>{description}</h3>
                 <div className='flex flex-row justify-start items-center text-center mt-3'>

@@ -8,7 +8,6 @@ import { useDispatch, useSelector } from 'react-redux'
 import Button from '@mui/material/Button';
 import { calculateBasket, deleteFromBasket, setDrawer } from './redux/slices/basketSlice'
 import { useEffect } from 'react'
-import Snackbar from '@mui/material/Snackbar';
 
 
 function App() {
