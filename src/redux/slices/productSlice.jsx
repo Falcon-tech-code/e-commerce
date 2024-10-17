@@ -3,8 +3,9 @@ import axios from "axios";
 
 const initialState = {
     products: [],
-    selectedProduct: {},
-    loading: false
+    selectedProduct: [],
+    loading: false,
+    category: "",
 }
 
 const BASE_URL = "https://fakestoreapi.com";
@@ -20,7 +21,12 @@ export const productSlice = createSlice({
     reducers: {
         setSelectedProduct: (state, action) => {
             state.selectedProduct = action.payload
-        }
+        },
+
+        changeProductCategory: (state, action) => {
+            state.category = action.payload
+            console.log(state.category)
+        },
     },
     extraReducers: (builder) => {
         builder.addCase(getAllProducts.pending, (state) => {
@@ -33,6 +39,6 @@ export const productSlice = createSlice({
     }
 })
 
-export const { setSelectedProduct } = productSlice.actions
+export const { setSelectedProduct, changeProductCategory } = productSlice.actions
 
 export default productSlice.reducer

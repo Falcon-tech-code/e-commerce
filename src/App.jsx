@@ -8,11 +8,14 @@ import { useDispatch, useSelector } from 'react-redux'
 import Button from '@mui/material/Button';
 import { calculateBasket, deleteFromBasket, setDrawer } from './redux/slices/basketSlice'
 import { useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 
 function App() {
 
   const { products, drawer, totalAmount } = useSelector((store) => store.basket);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     dispatch(calculateBasket());
@@ -47,7 +50,10 @@ function App() {
             })
           }
           <div>
-            <p className='text-center'>Toplam Tutar: {totalAmount}₺</p>
+            <p className='text-center'>Toplam Tutar: {totalAmount.toFixed(2)}₺</p>
+            <div className='flex flex-row justify-center items-center text-center mt-3'>
+              <Button onClick={() => navigate("/checkout")} size='small' style={{ backgroundColor: '#eb5e2f' }} variant="contained">Ödemeye Devam Et</Button>
+            </div>
           </div>
         </Drawer>
         <Header />

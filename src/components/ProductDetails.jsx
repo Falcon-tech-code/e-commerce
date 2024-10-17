@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom'
 import { getAllProducts, setSelectedProduct } from '../redux/slices/productSlice';
-import { Rating } from 'primereact/rating';
 import { CiCirclePlus } from "react-icons/ci";
 import { CiCircleMinus } from "react-icons/ci";
 import Button from '@mui/material/Button';
