@@ -15,7 +15,7 @@ function ProductDetails() {
 
     const { id } = useParams();
     const { products, selectedProduct } = useSelector((store) => store.product)
-    const { price, image, title, description, rating } = selectedProduct;
+    const { price, image, title, description } = selectedProduct;
 
     const [count, setCount] = useState(1);
 
@@ -38,7 +38,6 @@ function ProductDetails() {
             title,
             description,
             count,
-            rating
         }
 
         dispatch(addToBasket(payload))
@@ -67,7 +66,6 @@ function ProductDetails() {
                 <img className='w-[600px] h-[400px]' src={image} alt="selected-product-img" />
             </div>
             <div>
-                <Rating className='mt-14' value={selectedProduct.rating.rate} onChange={(e) => setValue(e.selectedProduct.rating.rate)} readOnly cancel={false} />
                 <h2 className='font-bold font-sans text-4xl mt-3'>{title}</h2>
                 <h3 className='font-thin font-sans text-lg mt-3'>{description}</h3>
                 <div className='flex flex-row justify-start items-center text-center mt-3'>
