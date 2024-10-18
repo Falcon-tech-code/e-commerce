@@ -5,7 +5,6 @@ const initialState = {
     products: [],
     selectedProduct: [],
     loading: false,
-    category: "",
 }
 
 const BASE_URL = "https://fakestoreapi.com";
@@ -21,11 +20,6 @@ export const productSlice = createSlice({
     reducers: {
         setSelectedProduct: (state, action) => {
             state.selectedProduct = action.payload
-        },
-
-        changeProductCategory: (state, action) => {
-            state.category = action.payload
-            console.log(state.category)
         },
     },
     extraReducers: (builder) => {
