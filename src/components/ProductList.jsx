@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { getAllProducts, changeProductCategory } from '../redux/slices/productSlice';
+import { getAllProducts } from '../redux/slices/productSlice';
 import Product from './Product';
 
 function PorductList() {
@@ -10,7 +10,6 @@ function PorductList() {
 
     useEffect(() => {
         dispatch(getAllProducts())
-        dispatch(changeProductCategory("all"));
     }, [])
 
     return (
